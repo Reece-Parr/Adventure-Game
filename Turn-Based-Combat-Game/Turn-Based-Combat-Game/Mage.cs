@@ -3,15 +3,12 @@ using System;
 
 namespace TurnBasedCombatGame
 {
-    class Mage : ICharacter
+    class Mage : Warrior, ICharacter
     {   
         private Spell currentSpell;
         private double health;
 
-
-        public string Name {get; private set;}
-
-        public Mage(string name) 
+        public Mage(string name) : base(name)
         {
             Name = name;   
             this.health = 20;     
@@ -24,23 +21,6 @@ namespace TurnBasedCombatGame
         //     return s;
         // }
 
-        public void Attack(Enemy e) 
-        {
-            Random r = new Random();
-            int damage = r.Next(currentSpell.GetSpellDamage());
-            e.TakeDamage(currentSpell.GetSpellDamage());
-
-        }
-
-        public string GetName() {
-            return Name;
-        }
-
-        public double getHealth()
-        {
-            return health;
-        }
-
         public string getCurrentSpell() {
            return "Currently wielding: " + currentSpell.GetSpellName() + " | This weapon does: " + currentSpell.GetSpellDamage() + " damage.";
         }
@@ -52,33 +32,6 @@ namespace TurnBasedCombatGame
             "Health: " + getHealth() + "\n" +
             "Class: Mage" + "\n" + getCurrentSpell();
         }
-
-        public void TakeDamage(int damage)
-        {
-            this.health -= damage;
-            Console.WriteLine($"You have taken {damage} damage, you are at {this.health}hp.");
-
-            if(this.health <= 0)
-            {
-                this.health = 0;
-                Console.WriteLine("You have died! Game over");
-                System.Environment.Exit(1);
-            }
-        }
-
-        
-
-
-        //  public void Heal(int addHealth)
-        // {
-        //     this.health += addHealth;
-
-        //     if(this.health >= 20)
-        //     {
-        //         this.health = 20;
-        //         Console.WriteLine($"You have been healed by {addHealth} hp");
-        //     }
-        // }
 
         // public string getEquipped(string c) 
         // {

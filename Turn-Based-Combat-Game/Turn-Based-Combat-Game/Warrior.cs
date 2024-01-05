@@ -9,7 +9,7 @@ namespace TurnBasedCombatGame
         private double health;
 
 
-        public string Name {get; private set;}
+        public string Name {get; protected set;}
 
         public Warrior(string name) 
         {
