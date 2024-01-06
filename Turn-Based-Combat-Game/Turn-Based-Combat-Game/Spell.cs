@@ -5,17 +5,17 @@ namespace TurnBasedCombatGame
 {
     class Spell
     {   
-        private string SpellType { get; set; }
+        private string SpellName { get; set; }
 
         private int SpellDamage { get; set; }
         
         public Spell(string name, int damage) {
-            SpellType = name;
+            SpellName = name;
             SpellDamage = damage;
         }
 
         public string GetSpellName() {
-            return SpellType;
+            return SpellName;
         }
 
         public int GetSpellDamage() {

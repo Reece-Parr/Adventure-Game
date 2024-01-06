@@ -3,7 +3,7 @@ using System;
 
 namespace TurnBasedCombatGame
 {
-    class Mage : Warrior, ICharacter
+    public class Mage : Warrior, ICharacter
     {   
         private Spell currentSpell;
         private double health;

@@ -3,13 +3,12 @@ using System;
 
 namespace TurnBasedCombatGame
 {
-    class Warrior : ICharacter
+    [Serializable]
+    public class Warrior : ICharacter
     {   
-        private Weapon currentWeapon;
+        public string Name {get; set;}
+        public Weapon currentWeapon;
         private double health;
-
-
-        public string Name {get; protected set;}
 
         public Warrior(string name) 
         {
@@ -17,6 +16,8 @@ namespace TurnBasedCombatGame
             this.health = 20;     
             this.currentWeapon = new Weapon("Longsword", 3); 
         }
+        
+        public Warrior() { }
 
         public void Attack(Enemy e) 
         {

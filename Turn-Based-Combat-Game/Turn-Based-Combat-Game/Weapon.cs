@@ -3,7 +3,7 @@ using System;
 
 namespace TurnBasedCombatGame
 {
-    class Weapon 
+    public class Weapon 
     {   
         private string WeaponName { get; set; }
 
@@ -13,6 +13,7 @@ namespace TurnBasedCombatGame
             WeaponName = name;
             WeaponDamage = damage;
         }
+        public Weapon() { } 
 
         public string GetWeaponName() {
             return WeaponName;

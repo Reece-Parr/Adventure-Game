@@ -3,7 +3,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace TurnBasedCombatGame
 {
-    class Enemy : ICombat
+    public class Enemy : ICombat
     {
         
         private int EnemyHealth { get; set; }
