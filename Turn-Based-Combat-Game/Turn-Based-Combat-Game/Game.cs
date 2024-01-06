@@ -31,6 +31,7 @@ namespace TurnBasedCombatGame
                     break;
             }
             */
+            
             Warrior war = new Warrior("Reece");
             war.currentWeapon = new Weapon("Short Sword", 5);
 
@@ -79,6 +80,7 @@ namespace TurnBasedCombatGame
             Console.WriteLine("Hello " + character.GetName() + ", let's take a look at your current profile & stats...");
             Delay(2000);
             Console.WriteLine(character.ToString());
+            // Call back to main.
 
         }
 
