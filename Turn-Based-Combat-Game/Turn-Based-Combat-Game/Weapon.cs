@@ -5,9 +5,9 @@ namespace TurnBasedCombatGame
 {
     public class Weapon 
     {   
-        private string WeaponName { get; set; }
+        public string WeaponName { get; set; }
 
-        private int WeaponDamage { get; set; }
+        public int WeaponDamage { get; set; }
 
         public Weapon(string name, int damage) {
             WeaponName = name;

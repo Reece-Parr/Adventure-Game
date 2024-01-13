@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Turn_Based_Combat_Game
 {
     public static class FileManager
     {
-        public static string Save<T>(T data)
+        public static StreamWriter Save<T>(T data, string filePath)
         {
             XmlSerializer xml = new XmlSerializer(typeof(T));
-            StringWriter write = new StringWriter();
+            StreamWriter write = new StreamWriter($"{filePath}.xml");
             xml.Serialize(write, data);
-            return write.ToString();
+            write.Close();
+            return write;
         }
 
-        public static T Load<T>(string xmlString) 
+        public static T Load<T>(string filePath)
         {
             try
             {
-                StringReader outStream = new StringReader(xmlString);
                 XmlSerializer xml = new XmlSerializer(typeof(T));
-                return (T)xml.Deserialize(outStream);
+                var myFileStream = new FileStream($"{filePath}.xml", FileMode.Open);
+                return (T)xml.Deserialize(myFileStream);
             }
             catch (Exception e)
             {

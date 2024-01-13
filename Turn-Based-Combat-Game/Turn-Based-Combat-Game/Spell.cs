@@ -3,16 +3,18 @@ using System;
 
 namespace TurnBasedCombatGame
 {
-    class Spell
+    public class Spell
     {   
-        private string SpellName { get; set; }
+        public string SpellName { get; set; }
 
-        private int SpellDamage { get; set; }
+        public int SpellDamage { get; set; }
         
         public Spell(string name, int damage) {
             SpellName = name;
             SpellDamage = damage;
         }
+
+        public Spell() { }
 
         public string GetSpellName() {
             return SpellName;

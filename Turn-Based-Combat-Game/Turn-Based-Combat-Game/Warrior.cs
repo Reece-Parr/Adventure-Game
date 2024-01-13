@@ -8,7 +8,7 @@ namespace TurnBasedCombatGame
     {   
         public string Name {get; set;}
         public Weapon currentWeapon;
-        private double health;
+        public double health;
 
         public Warrior(string name) 
         {
@@ -16,7 +16,7 @@ namespace TurnBasedCombatGame
             this.health = 20;     
             this.currentWeapon = new Weapon("Longsword", 3); 
         }
-        
+
         public Warrior() { }
 
         public void Attack(Enemy e) 

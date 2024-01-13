@@ -5,8 +5,7 @@ namespace TurnBasedCombatGame
 {
     public class Mage : Warrior, ICharacter
     {   
-        private Spell currentSpell;
-        private double health;
+        public Spell currentSpell;
 
         public Mage(string name) : base(name)
         {
@@ -14,6 +13,8 @@ namespace TurnBasedCombatGame
             this.health = 20;     
             this.currentSpell = new Spell("Fire", 3); 
         }
+
+        public Mage() { }
 
         // public Spell castFireSpell()
         // {

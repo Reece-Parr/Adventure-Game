@@ -11,7 +11,17 @@ namespace TurnBasedCombatGame
     {
         static void Main(string[] args)
         {
-            /*
+            // Instances created just to test saving feature.
+            Warrior war = new Warrior("Mark");
+            FileManager.Save<Warrior>(war, war.Name.ToLower());
+
+            Mage mg = new Mage("Reece");
+            FileManager.Save<Mage>(mg, mg.Name.ToLower());
+
+            // Empty Instances created just to test loading feature.
+            Warrior warrior = new Warrior();
+            Mage mage = new Mage();
+
             Console.Write("Hello and Welcome to [Name Here]. Would you like to \n 1. Create a character \n 2. Load a character \n 3. Exit game \n Answer:");
             int menuOption = Convert.ToInt32(Console.ReadLine());
 
@@ -21,7 +31,30 @@ namespace TurnBasedCombatGame
                     CreateCharacter();
                     break;
                 case 2:
-                    LoadCharacter();
+                    Console.Write("Enter the name of your character (Ensure input is identical to file save): ");
+                    string fileName = Console.ReadLine().ToLower();
+
+                    Console.Write("Enter the class of your character: ");
+                    string cl = Console.ReadLine().ToLower();
+
+                    if (cl.Equals("warrior"))
+                    {
+                        warrior = FileManager.Load<Warrior>(fileName);
+                        Console.WriteLine("Loading your character..");
+                        Delay(2000);
+                        Console.WriteLine(warrior.ToString());
+                    } 
+                    else if (cl.Equals("mage"))
+                    {
+                        mage = FileManager.Load<Mage>(fileName);
+                        Console.WriteLine("Loading your character..");
+                        Delay(2000);
+                        Console.WriteLine(mage.ToString());
+                    } 
+                    else
+                    {
+                        Console.WriteLine("There was an error with loading your file class.");
+                    }
                     break;
                 case 3:
                     System.Environment.Exit(1);
@@ -30,16 +63,8 @@ namespace TurnBasedCombatGame
                     Console.WriteLine("Invalid Menu Choice!");
                     break;
             }
-            */
-            
-            Warrior war = new Warrior("Reece");
-            war.currentWeapon = new Weapon("Short Sword", 5);
 
-            string save = FileManager.Save<Warrior>(war);
-            Console.WriteLine(save);
 
-            war = FileManager.Load<Warrior>(save);
-            Console.WriteLine(war.ToString());
         }
 
         public static void CreateCharacter() {
@@ -84,10 +109,6 @@ namespace TurnBasedCombatGame
 
         }
 
-        public static void LoadCharacter()
-        {
-            // Empty for now, just clearning error.
-        }
 
         public static ICharacter ChooseClass(String? name)
         {
