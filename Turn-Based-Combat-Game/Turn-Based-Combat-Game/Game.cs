@@ -11,6 +11,8 @@ namespace TurnBasedCombatGame
     {
         static void Main(string[] args)
         {
+
+
             // Instances created just to test saving feature.
             Warrior war = new Warrior("Mark");
             FileManager.Save<Warrior>(war, war.Name.ToLower());
@@ -21,6 +23,7 @@ namespace TurnBasedCombatGame
             // Empty Instances created just to test loading feature.
             Warrior warrior = new Warrior();
             Mage mage = new Mage();
+
 
             Console.Write("Hello and Welcome to [Name Here]. Would you like to \n 1. Create a character \n 2. Load a character \n 3. Exit game \n Answer:");
             int menuOption = Convert.ToInt32(Console.ReadLine());
@@ -53,6 +56,7 @@ namespace TurnBasedCombatGame
                     } 
                     else
                     {
+                        
                         Console.WriteLine("There was an error with loading your file class.");
                     }
                     break;
@@ -65,6 +69,19 @@ namespace TurnBasedCombatGame
             }
 
 
+        }
+
+        public static void Introduction<T>(T choosenClass)
+        {
+            
+            Console.WriteLine("\nWelcome, adventurer, to the mystical realm of Eldoria, a land steeped in ancient magic and shrouded in secrets.");
+            Delay(3000);
+            Console.WriteLine("\nAs you step into this fantastical world, you find yourself standing at the crossroads of destiny, where every decision shapes the course of your journey\n." +
+            "As you travel down the long road towards Eldoria, you come across a abandoned carriage with a broken wheel and scattered items.");
+            Delay(3000);
+
+
+            Console.ReadLine();
         }
 
         public static void CreateCharacter() {
@@ -105,7 +122,7 @@ namespace TurnBasedCombatGame
             Console.WriteLine("Hello " + character.GetName() + ", let's take a look at your current profile & stats...");
             Delay(2000);
             Console.WriteLine(character.ToString());
-            // Call back to main.
+            Introduction(character);
 
         }
 
