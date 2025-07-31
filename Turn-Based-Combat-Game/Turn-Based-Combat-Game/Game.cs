@@ -11,8 +11,6 @@ namespace TurnBasedCombatGame
     {
         static void Main(string[] args)
         {
-
-
             // Instances created just to test saving feature.
             Warrior war = new Warrior("Mark");
             FileManager.Save<Warrior>(war, war.Name.ToLower());
@@ -25,7 +23,7 @@ namespace TurnBasedCombatGame
             Mage mage = new Mage();
 
 
-            Console.Write("Hello and Welcome to [Name Here]. Would you like to \n 1. Create a character \n 2. Load a character \n 3. Exit game \n Answer:");
+            Console.Write("Welcome to 'Adventure Game'. Would you like to \n 1. Create a character \n 2. Load a character \n 3. Exit game \n Answer:");
             int menuOption = Convert.ToInt32(Console.ReadLine());
 
             switch (menuOption)
@@ -46,17 +44,18 @@ namespace TurnBasedCombatGame
                         Console.WriteLine("Loading your character..");
                         Delay(2000);
                         Console.WriteLine(warrior.ToString());
-                    } 
+                        // Need to call Introduction Function when actually using Load feature
+                    }
                     else if (cl.Equals("mage"))
                     {
                         mage = FileManager.Load<Mage>(fileName);
                         Console.WriteLine("Loading your character..");
                         Delay(2000);
                         Console.WriteLine(mage.ToString());
+                        // Need to call Introduction Function when actually using Load feature
                     } 
                     else
                     {
-                        
                         Console.WriteLine("There was an error with loading your file class.");
                     }
                     break;
@@ -67,25 +66,23 @@ namespace TurnBasedCombatGame
                     Console.WriteLine("Invalid Menu Choice!");
                     break;
             }
-
-
         }
 
         public static void Introduction<T>(T choosenClass)
         {
-            
-            Console.WriteLine("\nWelcome, adventurer, to the mystical realm of Eldoria, a land steeped in ancient magic and shrouded in secrets.");
-            Delay(3000);
-            Console.WriteLine("\nAs you step into this fantastical world, you find yourself standing at the crossroads of destiny, where every decision shapes the course of your journey\n." +
-            "As you travel down the long road towards Eldoria, you come across a abandoned carriage with a broken wheel and scattered items.");
-            Delay(3000);
 
+            PrintedWrapped("\nWelcome, adventurer, to the mystical realm of Eldoria, a land steeped in ancient magic and shrouded in secrets.");
+            Delay(3000);
+            PrintedWrapped("\nAs you step into this fantastical world, you find yourself standing at the crossroads of destiny, where every decision shapes the course of your journey.");
+            Delay(3000);
+            PrintedWrapped("\nAs you travel down the long road towards Eldoria, you come across a abandoned carriage with a broken wheel and scattered items.");
+            Delay(3000);
 
             Console.ReadLine();
         }
 
         public static void CreateCharacter() {
-            Console.WriteLine("Hello adventurer! Welcome to Asgard. What may I call you?");
+            Console.WriteLine("Hello adventurer! Welcome to Eldoria. What may I call you?");
             string? name = Console.ReadLine();
             
             bool isValid = isValidName(name);
@@ -123,7 +120,6 @@ namespace TurnBasedCombatGame
             Delay(2000);
             Console.WriteLine(character.ToString());
             Introduction(character);
-
         }
 
 
@@ -176,5 +172,25 @@ namespace TurnBasedCombatGame
             Thread.Sleep(milliseconds);
         }
         
+        public static void PrintedWrapped(string text)
+        {
+            int width = Console.WindowWidth - 1;
+            string[] words = text.Split(" ");
+            string line = "";
+
+            foreach (string word in words) 
+            {
+                if ((line + word).Length > width)
+                {
+                    Console.WriteLine(line);
+                    line = "";
+                }
+                line += word + " ";
+            }
+            if (line.Length > 0)
+            {
+                Console.WriteLine(line);
+            }
+        }
     }
 }
