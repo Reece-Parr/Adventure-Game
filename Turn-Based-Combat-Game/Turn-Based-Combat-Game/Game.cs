@@ -11,6 +11,8 @@ namespace TurnBasedCombatGame
     {
         static void Main(string[] args)
         {
+            TestCombat();
+
             // Instances created just to test saving feature.
             Warrior war = new Warrior("Mark");
             FileManager.Save<Warrior>(war, war.Name.ToLower());
@@ -65,6 +67,56 @@ namespace TurnBasedCombatGame
                 default:
                     Console.WriteLine("Invalid Menu Choice!");
                     break;
+            }
+        }
+
+        public static void TestCombat()
+        {
+            Mage mage = new Mage("Test");
+            Enemy enemy = new Enemy(15);
+
+            bool inCombat = true;
+            int roundCount = 1;
+
+            Console.WriteLine("Combat has begun!");
+
+            while (inCombat)
+            {
+                while (mage.health > 0 && enemy.GetHealth() > 0)
+                {
+                    Console.WriteLine("\nPlayer Turn!");
+                    Delay(2000);
+                    mage.Attack(enemy);
+                    Delay(2000);
+
+                    if (enemy.GetHealth() <= 0)
+                    {
+                        Console.WriteLine("Enemy is defeated! You Win!");
+                        break;
+                    }
+
+                    Console.WriteLine("\nEnemy Turn...");
+                    Delay(2000);
+                    enemy.Attack(mage);
+                    Delay(2000);
+
+                    if (mage.health <= 0)
+                    {
+                        Console.WriteLine("Player is defeated! You Lose..");
+                        break;
+                    }
+
+                    Console.WriteLine($"\nRound {roundCount} over, loading current stats..");
+                    Delay(3000);
+                    Console.WriteLine("\nStatus:");
+                    Console.WriteLine($"Player's Current Health: {mage.health}hp");
+                    Console.WriteLine($"Enemy's Current Health: {enemy.GetHealth()}hp");
+                    Console.WriteLine("Press Enter to continue.. ");
+                    Console.ReadLine();
+
+                    roundCount++;
+                }
+                inCombat = false;
             }
         }
 

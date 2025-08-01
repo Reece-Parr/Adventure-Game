@@ -12,6 +12,7 @@ namespace TurnBasedCombatGame
         {
             EnemyHealth = health;
         }
+
         public void TakeDamage(int damage)
         {
             EnemyHealth -= damage;
@@ -26,8 +27,21 @@ namespace TurnBasedCombatGame
 
         public void Attack(Mage m) {
             Random r = new Random();
-            int damage = r.Next(4);
-            m.TakeDamage(damage);
+            int damage = r.Next(0, 4);
+
+            if (damage < 0)
+            {
+                Console.WriteLine("Enemy has missed.");
+            }
+            else
+            {
+                m.TakeDamage(damage);
+            }
+        }
+
+        public int GetHealth()
+        {
+            return EnemyHealth;
         }
 
         public override string ToString()
