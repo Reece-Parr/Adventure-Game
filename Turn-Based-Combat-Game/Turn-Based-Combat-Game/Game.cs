@@ -86,12 +86,29 @@ namespace TurnBasedCombatGame
                 {
                     Console.WriteLine("\nPlayer Turn!");
                     Delay(2000);
-                    mage.Attack(enemy);
-                    Delay(2000);
+
+                    Console.WriteLine("\nChoose Action: \n1. Attack \n2. Defend");
+                    int action = Convert.ToInt32(Console.ReadLine());
+
+                    switch(action)
+                    {
+                        case 1:
+                            mage.Attack(enemy);
+                            Delay(2000);
+                            break;
+                        case 2:
+                            mage.isDefending = true;
+                            Console.WriteLine("\nYou prepare to block the next attack..");
+                            Delay(2000);
+                            break;
+                        default:
+                            Console.WriteLine("Invalid Action Choice! Please try again..");
+                            break;
+                    }
 
                     if (enemy.GetHealth() <= 0)
                     {
-                        Console.WriteLine("Enemy is defeated! You Win!");
+                        Console.WriteLine("All Enemies are defeated! You Win!");
                         break;
                     }
 

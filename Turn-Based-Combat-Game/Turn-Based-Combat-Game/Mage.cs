@@ -8,6 +8,9 @@ namespace TurnBasedCombatGame
     {   
         public Spell currentSpell;
 
+        public int hitChance = 75;
+        public bool isDefending = false;
+
         public Mage(string name) : base(name)
         {
             Name = name;   
@@ -29,15 +32,18 @@ namespace TurnBasedCombatGame
 
         public void Attack(Enemy e)
         {
-            Random rng = new Random();
-            double modifier = rng.NextDouble() * 0.4 + 0.8;
-            int damage = (int)Math.Round(currentSpell.SpellDamage * modifier);
+            Random rnd = new Random();
+            int roll = rnd.Next(1, 101);
 
-            if (damage < 0)
+            if (roll <= hitChance)
+            {
+                int damage = currentSpell.GetSpellDamage();
+                e.TakeDamage(damage);
+            }
+            else
             {
                 Console.WriteLine("You have missed the enemy!");
             }
-            e.TakeDamage(damage);
         }
 
         public void TakeDamage(int damage)
