@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata.Ecma335;
 using System.Xml;
 
 
@@ -10,6 +11,7 @@ namespace TurnBasedCombatGame
 
         public int hitChance = 75;
         public bool isDefending = false;
+        public int healPotion { get; set; } = 2;
 
         public Mage(string name) : base(name)
         {
@@ -57,6 +59,23 @@ namespace TurnBasedCombatGame
                 Console.WriteLine("You have been killed!");
                 // Either end game or Load a recent save - not yet implemented recent save feature.
                 // PLEASE COME BACK TO THIS AFTER COMBAT IS TESTED
+            }
+        }
+
+        public bool UseHealPotion()
+        {
+            if (healPotion > 0)
+            {
+                int healPoints = 5;
+                this.health += healPoints;
+                healPotion--;
+                Console.WriteLine($"\nYou used a heal potion and restored {healPoints} and now at {this.health}hp.");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("You are out of healing potions!");
+                return false;
             }
         }
 

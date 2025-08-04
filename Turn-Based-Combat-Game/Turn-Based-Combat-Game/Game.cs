@@ -87,7 +87,7 @@ namespace TurnBasedCombatGame
                     Console.WriteLine("\nPlayer Turn!");
                     Delay(2000);
 
-                    Console.WriteLine("\nChoose Action: \n1. Attack \n2. Defend");
+                    Console.WriteLine("\nChoose Action: \n1. Attack \n2. Defend \n3. Heal Potion");
                     int action = Convert.ToInt32(Console.ReadLine());
 
                     switch(action)
@@ -100,6 +100,14 @@ namespace TurnBasedCombatGame
                             mage.isDefending = true;
                             Console.WriteLine("\nYou prepare to block the next attack..");
                             Delay(2000);
+                            break;
+                        case 3:
+                            bool usedHealPotion = mage.UseHealPotion();
+
+                            if (!usedHealPotion)
+                            {
+                                continue;
+                            }
                             break;
                         default:
                             Console.WriteLine("Invalid Action Choice! Please try again..");
