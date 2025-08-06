@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace TurnBasedCombatGame
 {
-    public class Mage : Warrior, ICharacter
+    public class Mage : BaseClass
     {   
         public Spell currentSpell;
 
@@ -15,12 +15,8 @@ namespace TurnBasedCombatGame
 
         public Mage(string name) : base(name)
         {
-            Name = name;   
-            this.health = 20;     
             this.currentSpell = new Spell("Fire", 3); 
         }
-
-        public Mage() { }
 
         // public Spell castFireSpell()
         // {
@@ -32,7 +28,7 @@ namespace TurnBasedCombatGame
            return "Currently wielding: " + currentSpell.GetSpellName() + " | This weapon does: " + currentSpell.GetSpellDamage() + " damage.";
         }
 
-        public void Attack(Enemy e)
+        public override void Attack(Enemy e)
         {
             Random rnd = new Random();
             int roll = rnd.Next(1, 101);
@@ -45,37 +41,6 @@ namespace TurnBasedCombatGame
             else
             {
                 Console.WriteLine("You have missed the enemy!");
-            }
-        }
-
-        public void TakeDamage(int damage)
-        {
-            this.health -= damage;
-            Console.WriteLine($"The player has taken {damage} damage, and is now at {this.health}hp");
-
-            if (this.health <= 0)
-            {
-                this.health = 0;
-                Console.WriteLine("You have been killed!");
-                // Either end game or Load a recent save - not yet implemented recent save feature.
-                // PLEASE COME BACK TO THIS AFTER COMBAT IS TESTED
-            }
-        }
-
-        public bool UseHealPotion()
-        {
-            if (healPotion > 0)
-            {
-                int healPoints = 5;
-                this.health += healPoints;
-                healPotion--;
-                Console.WriteLine($"\nYou used a heal potion and restored {healPoints} and now at {this.health}hp.");
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("You are out of healing potions!");
-                return false;
             }
         }
 

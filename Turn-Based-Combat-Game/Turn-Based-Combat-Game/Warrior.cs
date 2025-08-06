@@ -4,31 +4,33 @@ using System;
 namespace TurnBasedCombatGame
 {
     [Serializable]
-    public class Warrior : ICharacter
+    public class Warrior : BaseClass
     {   
-        public string Name {get; set;}
         public Weapon currentWeapon;
-        public double health;
 
-        public Warrior(string name) 
-        {
-            Name = name;   
-            this.health = 20;     
+        public int hitChance = 75;
+        public bool isDefending = false;
+        public int healPotion { get; set; } = 2;
+
+        public Warrior(string name) : base (name)
+        {  
             this.currentWeapon = new Weapon("Longsword", 3); 
         }
 
-        public Warrior() { }
-
-        public void Attack(Enemy e) 
+        public override void Attack(Enemy e)
         {
-            Random r = new Random();
-            int damage = r.Next(currentWeapon.GetWeaponDamage());
-            e.TakeDamage(currentWeapon.GetWeaponDamage());
+            Random rnd = new Random();
+            int roll = rnd.Next(1, 101);
 
-        }
-
-        public string GetName() {
-            return Name;
+            if (roll <= hitChance)
+            {
+                int damage = currentWeapon.GetWeaponDamage();
+                e.TakeDamage(damage);
+            }
+            else
+            {
+                Console.WriteLine("You have missed the enemy!");
+            }
         }
 
         public double getHealth()
@@ -47,22 +49,6 @@ namespace TurnBasedCombatGame
             "Health: " + getHealth() + "\n" +
             "Class: Warrior" + "\n" + getCurrentWeapon();
         }
-
-        public void TakeDamage(int damage)
-        {
-            this.health -= damage;
-            Console.WriteLine($"You have taken {damage} damage, you are at {this.health}hp.");
-
-            if(this.health <= 0)
-            {
-                this.health = 0;
-                Console.WriteLine("You have died! Game over");
-                System.Environment.Exit(1);
-            }
-        }
-
-        
-
 
         //  public void Heal(int addHealth)
         // {

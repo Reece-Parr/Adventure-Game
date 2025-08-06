@@ -2,8 +2,13 @@ using System;
 
 namespace TurnBasedCombatGame
 {
-    interface ICharacter
+    public interface ICharacter
     {
-       public string GetName();
+        void Attack(Enemy enemy);
+        bool UseHealPotion();
+        bool isDefending { get; set; }
+        int Health { get; set; }
+
+        public string GetName();
     }
 }

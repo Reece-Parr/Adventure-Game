@@ -11,14 +11,19 @@ namespace TurnBasedCombatGame
     {
         static void Main(string[] args)
         {
-            TestCombat();
+            CombatManager combat = new CombatManager();
+
+            Mage mg = new Mage("Jeff");
+            Enemy enemy = new Enemy(15);
+
+            combat.StartCombat(mg, enemy);
 
             // Instances created just to test saving feature.
-            Warrior war = new Warrior("Mark");
-            FileManager.Save<Warrior>(war, war.Name.ToLower());
+            //Warrior war = new Warrior("Mark");
+            //FileManager.Save<Warrior>(war, war.Name.ToLower());
 
-            Mage mg = new Mage("Reece");
-            FileManager.Save<Mage>(mg, mg.Name.ToLower());
+            //Mage mg = new Mage("Reece");
+            //FileManager.Save<Mage>(mg, mg.Name.ToLower());
 
             // Empty Instances created just to test loading feature.
             Warrior warrior = new Warrior();
@@ -67,81 +72,6 @@ namespace TurnBasedCombatGame
                 default:
                     Console.WriteLine("Invalid Menu Choice!");
                     break;
-            }
-        }
-
-        public static void TestCombat()
-        {
-            Mage mage = new Mage("Test");
-            Enemy enemy = new Enemy(15);
-
-            bool inCombat = true;
-            int roundCount = 1;
-
-            Console.WriteLine("Combat has begun!");
-
-            while (inCombat)
-            {
-                while (mage.health > 0 && enemy.GetHealth() > 0)
-                {
-                    Console.WriteLine("\nPlayer Turn!");
-                    Delay(2000);
-
-                    Console.WriteLine("\nChoose Action: \n1. Attack \n2. Defend \n3. Heal Potion");
-                    int action = Convert.ToInt32(Console.ReadLine());
-
-                    switch(action)
-                    {
-                        case 1:
-                            mage.Attack(enemy);
-                            Delay(2000);
-                            break;
-                        case 2:
-                            mage.isDefending = true;
-                            Console.WriteLine("\nYou prepare to block the next attack..");
-                            Delay(2000);
-                            break;
-                        case 3:
-                            bool usedHealPotion = mage.UseHealPotion();
-
-                            if (!usedHealPotion)
-                            {
-                                continue;
-                            }
-                            break;
-                        default:
-                            Console.WriteLine("Invalid Action Choice! Please try again..");
-                            break;
-                    }
-
-                    if (enemy.GetHealth() <= 0)
-                    {
-                        Console.WriteLine("All Enemies are defeated! You Win!");
-                        break;
-                    }
-
-                    Console.WriteLine("\nEnemy Turn...");
-                    Delay(2000);
-                    enemy.Attack(mage);
-                    Delay(2000);
-
-                    if (mage.health <= 0)
-                    {
-                        Console.WriteLine("Player is defeated! You Lose..");
-                        break;
-                    }
-
-                    Console.WriteLine($"\nRound {roundCount} over, loading current stats..");
-                    Delay(3000);
-                    Console.WriteLine("\nStatus:");
-                    Console.WriteLine($"Player's Current Health: {mage.health}hp");
-                    Console.WriteLine($"Enemy's Current Health: {enemy.GetHealth()}hp");
-                    Console.WriteLine("Press Enter to continue.. ");
-                    Console.ReadLine();
-
-                    roundCount++;
-                }
-                inCombat = false;
             }
         }
 
