@@ -18,7 +18,7 @@ namespace TurnBasedCombatGame
 
             while (inCombat)
             {
-                while (player.health > 0 && enemy.GetHealth() > 0)
+                while (player.GetHealth() > 0 && enemy.GetHealth() > 0)
                 {
                     Console.WriteLine("\nPlayer Turn!");
                     Delay(2000);
@@ -61,7 +61,7 @@ namespace TurnBasedCombatGame
                     enemy.Attack(player);
                     Delay(2000);
 
-                    if (player.health <= 0)
+                    if (player.GetHealth() <= 0)
                     {
                         Console.WriteLine("Player is defeated! You Lose..");
                         break;
@@ -70,7 +70,7 @@ namespace TurnBasedCombatGame
                     Console.WriteLine($"\nRound {roundCount} over, loading current stats..");
                     Delay(3000);
                     Console.WriteLine("\nStatus:");
-                    Console.WriteLine($"Player's Current Health: {player.health}hp");
+                    Console.WriteLine($"Player's Current Health: {player.GetHealth()}hp");
                     Console.WriteLine($"Enemy's Current Health: {enemy.GetHealth()}hp");
                     Console.WriteLine("Press Enter to continue.. ");
                     Console.ReadLine();

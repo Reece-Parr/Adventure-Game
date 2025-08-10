@@ -7,14 +7,13 @@ namespace TurnBasedCombatGame
 		public string Name { get; set; }
 		public int Health { get; set; }
 		public bool isDefending { get; set; }
-		public int maxHealth { get; set; }
 
 		protected int healPotionCount = 2;
 
 		public BaseClass(string name)
 		{
 			Name = name;
-			Health = maxHealth;
+			Health = 20;
 			isDefending = false;
 		}
 
@@ -36,12 +35,12 @@ namespace TurnBasedCombatGame
 
         public virtual bool UseHealPotion()
         {
-            if (healPotion > 0)
+            if (healPotionCount > 0)
             {
                 int healPoints = 5;
                 Health += healPoints;
-                healPotion--;
-                Console.WriteLine($"\nYou used a heal potion and restored {healPoints} and now at {Health}hp.");
+                healPotionCount--;
+                Console.WriteLine($"\nYou used a heal potion and restored {healPoints}hp. Total health: {Health}hp.");
                 return true;
             }
             else
@@ -54,6 +53,11 @@ namespace TurnBasedCombatGame
         public string GetName()
         {
             return Name;
+        }
+
+        public int GetHealth()
+        {
+            return Health;
         }
     }
 }

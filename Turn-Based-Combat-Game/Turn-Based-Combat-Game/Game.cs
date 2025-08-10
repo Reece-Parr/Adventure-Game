@@ -24,10 +24,10 @@ namespace TurnBasedCombatGame
 
             //Mage mg = new Mage("Reece");
             //FileManager.Save<Mage>(mg, mg.Name.ToLower());
-
+            
             // Empty Instances created just to test loading feature.
-            Warrior warrior = new Warrior();
-            Mage mage = new Mage();
+            Warrior warrior = new Warrior("Mark");
+            Mage mage = new Mage("Reece");
 
 
             Console.Write("Welcome to 'Adventure Game'. Would you like to \n 1. Create a character \n 2. Load a character \n 3. Exit game \n Answer:");

@@ -33,11 +33,6 @@ namespace TurnBasedCombatGame
             }
         }
 
-        public double getHealth()
-        {
-            return health;
-        }
-
         public string getCurrentWeapon() {
            return "Currently wielding: " + currentWeapon.GetWeaponName() + " | This weapon does: " + currentWeapon.GetWeaponDamage() + " damage.";
         }
@@ -46,7 +41,7 @@ namespace TurnBasedCombatGame
         {
             return $"Current Player: \n" +
             "Name: " + Name + "\n" + 
-            "Health: " + getHealth() + "\n" +
+            "Health: " + GetHealth() + "\n" +
             "Class: Warrior" + "\n" + getCurrentWeapon();
         }
 

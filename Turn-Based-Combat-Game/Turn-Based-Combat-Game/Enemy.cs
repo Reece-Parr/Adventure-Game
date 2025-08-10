@@ -25,7 +25,7 @@ namespace TurnBasedCombatGame
             }
         }
 
-        public void Attack(Mage m) 
+        public void Attack(ICharacter player) 
         {
             Random r = new Random();
             int damage = r.Next(0, 5);
@@ -40,7 +40,7 @@ namespace TurnBasedCombatGame
             }
             else
             {
-                if (m.isDefending && checkSuccessfulDefence)
+                if (player.isDefending && checkSuccessfulDefence)
                 {
                     damage /= 2;
 
@@ -51,17 +51,17 @@ namespace TurnBasedCombatGame
                     else
                     {
                         Console.WriteLine("\nYou blocked the attack! Damage reduced.");
-                        m.TakeDamage(damage);
+                        player.TakeDamage(damage);
                     }
                 }
                 else
                 {
-                    if (m.isDefending)
+                    if (player.isDefending)
                     {
                         Console.WriteLine("\nYou tried to defend, but failed!");
                     }
 
-                    m.TakeDamage(damage);
+                    player.TakeDamage(damage);
                 }
             }
         }

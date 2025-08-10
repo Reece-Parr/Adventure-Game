@@ -47,8 +47,8 @@ namespace TurnBasedCombatGame
         public override string ToString()
         {
             return $"Current Player: \n" +
-            "Name: " + Name + "\n" + 
-            "Health: " + getHealth() + "\n" +
+            "Name: " + GetName() + "\n" + 
+            "Health: " + GetHealth() + "\n" +
             "Class: Mage" + "\n" + getCurrentSpell();
         }
 
