@@ -1,0 +1,72 @@
+﻿using System;
+
+namespace TurnBasedCombatGame
+{
+    public class Inventory
+    {
+        private Dictionary<string, int> items;
+
+        public Inventory()
+        {
+            items = new Dictionary<string, int>();
+        }
+
+        public void AddItem(string itemName, int amount)
+        {
+            if (items.ContainsKey(itemName))
+            {
+                items[itemName] += amount;
+            }
+            else
+            {
+                items.Add(itemName, amount);
+            }
+
+            if (items[itemName] <= 0)
+            {
+                items.Remove(itemName);
+            }
+        }
+
+        public bool RemoveItem(string itemName, int amount)
+        {
+            if (items.ContainsKey(itemName))
+            {
+                items[itemName] -= amount;
+
+                if (items[itemName] <= 0)
+                {
+                    items.Remove(itemName);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public string HasItem(string itemName)
+        {
+            if (!items.ContainsKey(itemName) || items[itemName] <= 0)
+            {
+                return $"There is no {itemName} in your inventory!";
+            }
+
+            return $"You have {items[itemName]} {itemName}(s) in your inventory";
+        }
+
+        public void DisplayInventory()
+        {
+            if (items.Count == 0)
+            {
+                Console.WriteLine("Your inventory is empty.");
+                return;
+            }
+
+            Console.WriteLine("Your inventory contains:");
+            foreach (var item in items)
+            {
+                Console.WriteLine($"- {item.Key}: {item.Value}");
+            }
+        }
+    }
+}
+

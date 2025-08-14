@@ -11,6 +11,32 @@ namespace TurnBasedCombatGame
     {
         static void Main(string[] args)
         {
+            Inventory inventory = new Inventory();
+
+            // Add some starting items
+            inventory.AddItem("Healing Potion", 2);
+            inventory.AddItem("Mana Potion", 1);
+
+            Console.WriteLine("Initial inventory:");
+            inventory.DisplayInventory();
+
+            Console.WriteLine("\nUsing one Healing Potion...");
+            inventory.RemoveItem("Healing Potion", 1);
+            inventory.DisplayInventory();
+
+            Console.WriteLine("\nUsing last Healing Potion...");
+            inventory.RemoveItem("Healing Potion", 1);
+            inventory.DisplayInventory();
+
+            Console.WriteLine("\nTrying to remove Mana Potion...");
+            inventory.RemoveItem("Mana Potion", 1);
+            inventory.DisplayInventory();
+
+            Console.WriteLine("\nTrying to remove item not in inventory...");
+            bool removed = inventory.RemoveItem("Sword", 1);
+            Console.WriteLine($"Sword removed? {removed}");
+
+
             CombatManager combat = new CombatManager();
 
             Mage mg = new Mage("Jeff");
