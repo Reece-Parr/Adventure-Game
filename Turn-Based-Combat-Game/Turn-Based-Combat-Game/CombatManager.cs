@@ -23,7 +23,7 @@ namespace TurnBasedCombatGame
                     Console.WriteLine("\nPlayer Turn!");
                     Delay(2000);
 
-                    Console.WriteLine("\nChoose Action: \n1. Attack \n2. Defend \n3. Heal Potion");
+                    Console.WriteLine("\nChoose Action: \n1. Attack \n2. Defend \n3. View Inventory");
                     int action = Convert.ToInt32(Console.ReadLine());
 
                     switch (action)
@@ -38,10 +38,29 @@ namespace TurnBasedCombatGame
                             Delay(2000);
                             break;
                         case 3:
-                            bool usedHealPotion = player.UseHealPotion();
+                            Console.WriteLine("\nInventory:");
+                            player.inventory.DisplayInventory();
 
-                            if (!usedHealPotion)
+                            Console.WriteLine("\nPlease choose and item to use: (or 0 to go back):");
+                            string choice = Console.ReadLine();
+
+                            if (choice.ToLower() == "healing potion")
                             {
+                                bool usedHealPotion = player.UseHealPotion();
+
+                                if (!usedHealPotion)
+                                {
+                                    continue;
+                                }
+                            }
+                            else if (choice == "0")
+                            {
+                                Console.WriteLine("Closing Inventory.. ");
+                                continue;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid choice, please choose again.");
                                 continue;
                             }
                             break;

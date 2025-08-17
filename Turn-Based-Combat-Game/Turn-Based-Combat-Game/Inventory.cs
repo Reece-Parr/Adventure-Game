@@ -43,14 +43,9 @@ namespace TurnBasedCombatGame
             return false;
         }
 
-        public string HasItem(string itemName)
+        public bool HasItem(string itemName)
         {
-            if (!items.ContainsKey(itemName) || items[itemName] <= 0)
-            {
-                return $"There is no {itemName} in your inventory!";
-            }
-
-            return $"You have {items[itemName]} {itemName}(s) in your inventory";
+            return items.ContainsKey(itemName) && items[itemName] > 0;
         }
 
         public void DisplayInventory()

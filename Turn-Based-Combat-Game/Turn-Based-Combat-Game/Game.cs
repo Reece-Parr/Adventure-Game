@@ -11,6 +11,7 @@ namespace TurnBasedCombatGame
     {
         static void Main(string[] args)
         {
+            /*
             Inventory inventory = new Inventory();
 
             // Add some starting items
@@ -35,7 +36,7 @@ namespace TurnBasedCombatGame
             Console.WriteLine("\nTrying to remove item not in inventory...");
             bool removed = inventory.RemoveItem("Sword", 1);
             Console.WriteLine($"Sword removed? {removed}");
-
+            */
 
             CombatManager combat = new CombatManager();
 

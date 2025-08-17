@@ -32,7 +32,7 @@ namespace TurnBasedCombatGame
             bool checkSuccessfulDefence = new Random().Next(0, 2) == 1;
             bool reduceDamage = false;
 
-            Console.WriteLine($"Incoming damage before defence: {damage}");
+            //Console.WriteLine($"Incoming damage before defence: {damage}");
 
             if (damage == 0)
             {

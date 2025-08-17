@@ -15,7 +15,8 @@ namespace TurnBasedCombatGame
 
         public Mage(string name) : base(name)
         {
-            this.currentSpell = new Spell("Fire", 3); 
+            this.currentSpell = new Spell("Fire", 3);
+            inventory.AddItem("Healing Potion", 2);
         }
 
         // public Spell castFireSpell()
@@ -25,7 +26,7 @@ namespace TurnBasedCombatGame
         // }
 
         public string getCurrentSpell() {
-           return "Currently wielding: " + currentSpell.GetSpellName() + " | This weapon does: " + currentSpell.GetSpellDamage() + " damage.";
+           return "Currently wielding: " + currentSpell.GetSpellName() + " | This spell does: " + currentSpell.GetSpellDamage() + " damage.";
         }
 
         public override void Attack(Enemy e)

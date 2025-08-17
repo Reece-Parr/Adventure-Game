@@ -8,13 +8,14 @@ namespace TurnBasedCombatGame
 		public int Health { get; set; }
 		public bool isDefending { get; set; }
 
-		protected int healPotionCount = 2;
+        public Inventory inventory { get; private set; }
 
 		public BaseClass(string name)
 		{
 			Name = name;
 			Health = 20;
 			isDefending = false;
+            inventory = new Inventory();
 		}
 
 		public abstract void Attack(Enemy enemy);
@@ -35,11 +36,11 @@ namespace TurnBasedCombatGame
 
         public virtual bool UseHealPotion()
         {
-            if (healPotionCount > 0)
+            if (inventory.HasItem("Healing Potion"))
             {
                 int healPoints = 5;
                 Health += healPoints;
-                healPotionCount--;
+                inventory.RemoveItem("Healing Potion", 1);
                 Console.WriteLine($"\nYou used a heal potion and restored {healPoints}hp. Total health: {Health}hp.");
                 return true;
             }

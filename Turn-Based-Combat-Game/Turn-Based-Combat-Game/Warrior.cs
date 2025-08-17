@@ -14,7 +14,8 @@ namespace TurnBasedCombatGame
 
         public Warrior(string name) : base (name)
         {  
-            this.currentWeapon = new Weapon("Longsword", 3); 
+            this.currentWeapon = new Weapon("Longsword", 3);
+            inventory.AddItem("Healing Potion", 2);
         }
 
         public override void Attack(Enemy e)
